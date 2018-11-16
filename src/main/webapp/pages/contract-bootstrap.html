@@ -28,6 +28,27 @@ $(document).ready(function(){
 });
 });
 
+$(document).ready(function() {
+  $("#add").click(function(e) {
+    e.preventDefault();
+    $.ajax({
+      type: "POST",
+      url: "/cc-service/",
+      data: {
+        providerName: $("#providerName").val(),
+        startDate: $("#startDate").val(),
+        endDate: $("#endDate").val()
+      },
+      success: function(result) {
+        alert('ok');
+      },
+      error: function(result) {
+        alert('error');
+      }
+    });
+  });
+    });
+
     </script>
     <style>
       html, body, .container {
@@ -66,6 +87,7 @@ padding: 30px 50px;
     </style>
 </head>
 <body>
+<form>
 <div class="container">
     <div class="row">
         <h2 class="text-center">
@@ -100,6 +122,6 @@ padding: 30px 50px;
 
     </div>
 </div>
-
+</form>
 </body>
 </html>
