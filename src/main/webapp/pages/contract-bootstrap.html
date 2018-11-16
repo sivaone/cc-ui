@@ -1,0 +1,105 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
+    <script type="text/javascript">
+
+$(document).ready(function(){
+    $('#table').bootstrapTable({
+    url: 'http://dev-sampleapp.a92fd0d94ecc484c91d0.eastus.aksapp.io/cc-service',
+    columns: [{
+        field: 'id',
+        title: 'Contract Id'
+    }, {
+        field: 'providerName',
+        title: 'Provider Name'
+    }, {
+        field: 'startDate',
+        title: 'Start Date'
+    },{
+        field: 'endDate',
+        title: 'End Date'
+    }, ]
+});
+});
+
+    </script>
+    <style>
+      html, body, .container {
+  width: 100%;
+  height: 100%;
+}
+.container {
+  background: #f9f9f9;
+  padding: 30px 50px;
+}
+
+.row {
+background: #FFFFFF;
+box-shadow: 0 2px 20px 2px rgba(0,0,0,0.20);
+padding: 30px 50px;
+}
+
+.highlight {
+  color: #333 !important;
+  animation-name: highlight;
+  animation-duration: 1.5s;
+  animation-iteration-count: 1;
+}
+
+.selected {
+  background: #acbad4;
+}
+
+@keyframes highlight {
+    0% {color: #333;}
+    50% {color: #00CC00;}
+    100% {color: #333;}
+}
+
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <h2 class="text-center">
+            Cloud Chasers Contracts
+        </h2>
+        <div class="col-md-7">
+            <button class="btn btn-danger" id="remove">
+                <i class="glyphicon glyphicon-remove"></i>
+            </button>
+            <table id="table" class="display table table-bordered" width="100%"></table>
+        </div>
+        <div class="col-md-4 col-md-offset-1">
+            <h3 class="text-center">Create a New Contract</h3>
+            <div class="form-group">
+                <label for="providerName">Provider Name</label>
+                <input type="text" name="providerName" id="providerName" placeholder="Provider Name"
+                       class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="startDate">Start Date</label>
+                <input type="date" name="startDate" id="startDate" placeholder="Start Date" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="endDate">End Date</label>
+                <input type="date" name="endDate" id="endDate" placeholder="End Date" class="form-control">
+            </div>
+                <div class="form-group">
+                    <button class="btn btn-info" id="add">Add</button>
+                    <button class="btn btn-info" id="search">Search</button>
+                </div>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>
