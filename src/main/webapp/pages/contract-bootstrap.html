@@ -30,7 +30,7 @@ $(document).ready(function(){
           data: dataStr,
           success: function(result) {
             $('#contractForm').trigger("reset");
-            refreshContractsTable();
+            window.location = window.location.pathname;
           },
           error: function(result) {
             alert('error');
