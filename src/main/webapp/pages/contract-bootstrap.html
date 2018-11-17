@@ -11,52 +11,56 @@
     <script type="text/javascript">
 
 $(document).ready(function(){
-    $('#table').bootstrapTable({
-    url: 'http://dev-sampleapp.a92fd0d94ecc484c91d0.eastus.aksapp.io/contract',
-    columns: [{
-        field: 'id',
-        title: 'Contract Id'
-    },{
-        field: 'contractName',
-        title: 'Contract Name'
-    }, {
-        field: 'providerName',
-        title: 'Provider Name'
-    }, {
-        field: 'startDate',
-        title: 'Start Date'
-    },{
-        field: 'endDate',
-        title: 'End Date'
-    }, ]
-});
-});
 
-$(document).ready(function() {
-  $("#add").click(function(e) {
-    e.preventDefault();
-    var data = {};
-    data.providerName =  $("#providerName").val();
-    data.contractName = $("#contractName").val();
-    data.startDate = $("#startDate").val();
-    data.endDate = $("#endDate").val();
-    var dataStr = JSON.stringify(data);
+   refreshContractsTable();
 
-    $.ajax({
-      type: "POST",
-      url: "http://dev-sampleapp.a92fd0d94ecc484c91d0.eastus.aksapp.io/contract",
-      contentType:"application/json; charset=utf-8",
-      data: dataStr,
-      success: function(result) {
-      $('#contractForm').trigger("reset");
-      $('#table').bootstrapTable('refresh');
-      },
-      error: function(result) {
-        alert('error');
-      }
+     $("#add").click(function(e) {
+        e.preventDefault();
+        var data = {};
+        data.providerName =  $("#providerName").val();
+        data.contractName = $("#contractName").val();
+        data.startDate = $("#startDate").val();
+        data.endDate = $("#endDate").val();
+        var dataStr = JSON.stringify(data);
+
+        $.ajax({
+          type: "POST",
+          url: "http://dev-sampleapp.a92fd0d94ecc484c91d0.eastus.aksapp.io/contract",
+          contentType:"application/json; charset=utf-8",
+          data: dataStr,
+          success: function(result) {
+            $('#contractForm').trigger("reset");
+            refreshContractsTable();
+          },
+          error: function(result) {
+            alert('error');
+          }
+        });
     });
-  });
+
 });
+
+function refreshContractsTable() {
+     $('#table').bootstrapTable({
+        url: 'http://dev-sampleapp.a92fd0d94ecc484c91d0.eastus.aksapp.io/contract',
+        columns: [{
+            field: 'id',
+            title: 'Contract Id'
+        },{
+            field: 'contractName',
+            title: 'Contract Name'
+        }, {
+            field: 'providerName',
+            title: 'Provider Name'
+        }, {
+            field: 'startDate',
+            title: 'Start Date'
+        },{
+            field: 'endDate',
+            title: 'End Date'
+        }, ]
+    });
+}
 
  </script>
  <style>
